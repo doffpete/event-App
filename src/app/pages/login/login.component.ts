@@ -44,8 +44,12 @@ export class LoginComponent {
       .signIn(this.loginForm.value.email, this.loginForm.value.password)
       .then((res) => {
         if (res.data.user?.role === 'authenticated') {
-          localStorage.setItem('user', JSON.stringify(res.data.user));
+          localStorage.setItem(
+            'access_token',
+            JSON.stringify(res.data.session?.access_token)
+          );
           this.router.navigate(['/first-page']);
+          localStorage.setItem('user', JSON.stringify(res.data.user));
         }
       })
       .catch((err) => {})

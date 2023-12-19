@@ -1,6 +1,6 @@
 <nav class="nav-bar">
   <h2>Welcome Back, Dear User!</h2>
-  <button class="btn btn-outline-primary round-button mx-2" type="button">
+  <button class="btn btn-outline-primary round-button mx-2" type="button" (click)="logout()">
     LOGOUT
   </button>
 </nav>
@@ -17,5 +17,33 @@
     </button>
   </div>
 
-  <h3>Click on the create events button above to create an event</h3>
+  
+    <div class="container" *ngIf="events?.length; else noData">
+      <h1>My Events</h1>
+      <table *ngIf="events">
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Event Venue</th>
+            <th>No. of Tickets</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Event Time</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let event of events">
+          <tr>
+            <td>{{ event.event_name }}</td>
+            <td>{{ event.venue }}</td>
+            <td>{{ event.no_tickets }}</td>
+            <td>{{ event.start_date }}</td>
+            <td>{{ event.end_date }}</td>
+            <td>{{ event.event_time }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noData>
+      <h3>Click on the create events button above to create an event</h3>
+    </ng-template>
 </div>

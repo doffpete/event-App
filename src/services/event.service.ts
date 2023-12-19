@@ -59,4 +59,8 @@ export class EventService {
 
     return data as unknown as EventResponseInterface[];
   }
+
+  removeSessionFromLocalStorage(){
+    localStorage.removeItem('data');
+  }
 }

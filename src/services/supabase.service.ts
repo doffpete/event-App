@@ -35,4 +35,12 @@ export class SupabaseService {
   get supabaseClient() {
     return this.supabase_client;
   }
+
+  signOut() {
+    return this.supabase_client.auth.signOut();
+  }
+
+  removeSessionFromLocalStorage() {
+    localStorage.removeItem('user');
+  }
 }
