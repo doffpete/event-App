@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="form-header">
+    <h2>Create a new Account</h2>
+    <p>It's so quick and easy</p>
+  </div>
+
+  <div class>
+    <form
+      action="#"
+      method="post"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <label for="username"><strong>Firstname:</strong></label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        required
+        formControlName="name"
+      />
+      <i
+        style="color: tomato"
+        *ngIf="
+          registerForm.controls['name'].invalid &&
+          (registerForm.controls['name'].dirty ||
+            registerForm.controls['name'].touched)
+        "
+        >Name Must be valid</i
+      >
+
+      <label for="username"><strong>Lastname:</strong></label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        required
+        formControlName="name"
+      />
+      <i
+        style="color: tomato"
+        *ngIf="
+          registerForm.controls['name'].invalid &&
+          (registerForm.controls['name'].dirty ||
+            registerForm.controls['name'].touched)
+        "
+        >Name Must be valid</i
+      >
+
+      <label for="email"><strong>Email:</strong></label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        formControlName="email"
+      />
+      <i
+        style="color: tomato"
+        *ngIf="
+          registerForm.controls['email'].invalid &&
+          (registerForm.controls['email'].dirty ||
+            registerForm.controls['email'].touched)
+        "
+        >Email is Required and Must be valid</i
+      >
+
+      <label for="password"><strong>Password:</strong></label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        formControlName="password"
+      />
+      <i
+        style="color: tomato"
+        *ngIf="
+          registerForm.controls['password'].invalid &&
+          (registerForm.controls['password'].dirty ||
+            registerForm.controls['password'].touched)
+        "
+        >Password must be atleast 7 characters</i
+      >
+
+      <label for="password"><strong>Confirm Password:</strong></label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        formControlName="password"
+      />
+      <i
+        style="color: tomato"
+        *ngIf="
+          registerForm.controls['password'].invalid &&
+          (registerForm.controls['password'].dirty ||
+            registerForm.controls['password'].touched)
+        "
+        >Password must be atleast 7 characters</i
+      ><br />
+
+      <!-- <button [disabled]="registerForm.invalid" type="submit">Register</button> -->
+      <button
+      type="submit"
+     [disabled]="registerForm.invalid || loading" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+    >
+     {{loading ? 'Registering...': 'Register'}}
+    </button>
+    </form>
+  </div>
+</div>
+
+<!-- userid[foreign key, linking the owner of the userid with the event id], id, name, creation date, end date, event time, no of tickets, no of sold tickets,
+woforeign key ;a way of linking two data tables 2geda; -->
