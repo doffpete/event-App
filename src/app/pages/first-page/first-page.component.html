@@ -21,8 +21,8 @@
     </button>
   </div>
 
-  <div class="container" *ngIf="events?.length; else noData">
-    <h1>My Events</h1>
+  <h1>My Events</h1>
+  <div class="event-container" *ngIf="events?.length; else noData">
     <table *ngIf="events">
       <thead>
         <tr>
@@ -32,6 +32,7 @@
           <th>Start Date</th>
           <th>End Date</th>
           <th>Event Time</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody *ngFor="let event of events">
@@ -42,6 +43,7 @@
           <td>{{ event.start_date }}</td>
           <td>{{ event.end_date }}</td>
           <td>{{ event.event_time }}</td>
+          <td><i class="bi bi-trash" (click)="deleteEvent()"></i></td>
         </tr>
       </tbody>
     </table>

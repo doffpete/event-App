@@ -42,4 +42,8 @@ export class FirstPageComponent implements OnInit {
         console.log(err);
       });
   }
+
+  deleteEvent(){}
+
+
 }

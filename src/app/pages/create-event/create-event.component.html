@@ -31,7 +31,13 @@
       <label for="event-time">Event Time:</label>
       <input type="time" formControlName="eventTime" required />
 
-      <button type="submit">Create Event</button>
+      <button
+        type="submit"
+        [disabled]="createEventForm.invalid || loading"
+        class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+      >
+        {{ loading ? "Creating Event..." : "CREATE EVENT" }}
+      </button>
     </form>
   </div>
 </div>

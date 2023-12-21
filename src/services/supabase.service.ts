@@ -62,4 +62,6 @@ export class SupabaseService {
     const user = localStorage.getItem('user');
     return user;
   }
+
+  
 }

@@ -47,7 +47,7 @@ export class LoginComponent {
           localStorage.setItem(
             'access_token',
             JSON.stringify(res.data.session?.access_token)
-          );
+          ); 
           this.router.navigate(['/first-page']);
           localStorage.setItem('user', JSON.stringify(res.data.user));
         }

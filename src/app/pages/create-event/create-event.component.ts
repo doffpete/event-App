@@ -26,6 +26,7 @@ import {
 })
 export class CreateEventComponent {
   createEventForm!: FormGroup;
+  loading = false;
   constructor(
     private FormBuilder: FormBuilder,
     private auth: SupabaseService,
@@ -43,6 +44,10 @@ export class CreateEventComponent {
   }
 
   onSubmit() {
-    this.eventService.createEvent(this.createEventForm.value)
+    this.loading = true;
+    this.eventService.createEvent(this.createEventForm.value);
+    this.router.navigate(['/first-page']);
   }
+
+ 
 }

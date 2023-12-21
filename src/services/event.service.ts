@@ -44,6 +44,8 @@ export class EventService {
     return data as unknown as EventInterface;
   }
 
+  removeEvent() {}
+
   async getUserEvents(): Promise<EventResponseInterface[]> {
     const user = this.userProfile();
     const supabase = this.supabase.supabaseClient;
@@ -59,4 +61,13 @@ export class EventService {
 
     return data as unknown as EventResponseInterface[];
   }
+
+  // async deleteUserEvent() {
+  //   const user = this.userProfile();
+  //   const supabase = this.supabase.supabaseClient;
+  //   await supabase
+  //     .From<City>()
+  //     .Where((x) => x.Id == 342)
+  //     .Delete();
+  // }
 }
