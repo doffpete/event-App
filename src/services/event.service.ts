@@ -62,12 +62,18 @@ export class EventService {
     return data as unknown as EventResponseInterface[];
   }
 
-  // async deleteUserEvent() {
-  //   const user = this.userProfile();
-  //   const supabase = this.supabase.supabaseClient;
-  //   await supabase
-  //     .From<City>()
-  //     .Where((x) => x.Id == 342)
-  //     .Delete();
-  // }
+  async deleteUserEvent(eventId:string) {
+    const supabase = this.supabase.supabaseClient;
+    const { data, error } = await supabase
+      .from('events')
+      .delete()
+      .eq('id', eventId);
+      if (error) {
+        console.log(error);
+        return error as unknown as EventResponseInterface[];
+      }
+  
+      return data as unknown as EventResponseInterface[];
+      
+  }
 }

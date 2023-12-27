@@ -15,7 +15,7 @@
     <button
       class="btn btn-success round-button"
       type="button"
-      routerLink="/create-event"
+      (click)="openCreateEventModal()"
     >
       Create Event
     </button>
@@ -32,7 +32,7 @@
           <th>Start Date</th>
           <th>End Date</th>
           <th>Event Time</th>
-          <th>Action</th>
+          <th class="action-column">Action</th>
         </tr>
       </thead>
       <tbody *ngFor="let event of events">
@@ -43,7 +43,18 @@
           <td>{{ event.start_date }}</td>
           <td>{{ event.end_date }}</td>
           <td>{{ event.event_time }}</td>
-          <td><i class="bi bi-trash" (click)="deleteEvent()"></i></td>
+          <td class="i-action">
+            <button class="btn btn-success round-button" type="button">
+              <i
+                class="bi bi-trash"
+                mat-raised-button
+                (click)="openDialog({action: 'deleteEvent', modal: 'DeleteModalComponent', extradata: event})"
+              ></i>
+            </button>
+            <button class="btn btn-success round-button" type="button">
+              <i class="bi bi-link-45deg"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

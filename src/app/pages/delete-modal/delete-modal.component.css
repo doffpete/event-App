@@ -1,0 +1,8 @@
+button {
+  margin-right: 8px;
+}
+
+.delete-modal {
+  display: flex;
+  align-items: flex-end;
+}

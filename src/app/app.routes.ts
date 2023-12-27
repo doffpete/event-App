@@ -35,13 +35,20 @@ export const routes: Routes = [
         (com) => com.FirstPageComponent
       ),
   },
+  // {
+  //   path: 'create-event',
+  //   canActivate: [authguardGuard],
+  //   loadComponent: () =>
+  //     import('./pages/create-event/create-event.component').then(
+  //       (com) => com.CreateEventComponent
+  //     ),
+  // },
   {
-    path: 'create-event',
-    canActivate: [authguardGuard],
+    path: 'event-ticket-purchase',
     loadComponent: () =>
-      import('./pages/create-event/create-event.component').then(
-        (com) => com.CreateEventComponent
-      ),
+      import(
+        './pages/event-ticket-purchase/event-ticket-purchase.component'
+      ).then((com) => com.EventTicketPurchaseComponent),
   },
 
   {
