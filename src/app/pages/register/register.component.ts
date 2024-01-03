@@ -29,7 +29,6 @@ export class RegisterComponent {
     this.registerForm = this.FormBuilder.group({
       name: FormBuilder.control('', [
         Validators.required,
-        // Validators.minLength(2),
       ]),
 
       email: FormBuilder.control('', [

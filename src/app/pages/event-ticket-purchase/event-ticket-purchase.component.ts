@@ -10,6 +10,8 @@ import { PurchaseTicketModalComponent } from '../purchase-ticket-modal/purchase-
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+// import { Pipe, PipeTransform } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-event-ticket-purchase',
@@ -19,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatButtonModule,
+    DatePipe,
   ],
   templateUrl: './event-ticket-purchase.component.html',
   styleUrl: './event-ticket-purchase.component.css',
