@@ -1,6 +1,9 @@
+import { DialogRef } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+
 import { EventService } from './../../../services/event.service';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -19,6 +22,7 @@ import {
   selector: 'app-modal',
   standalone: true,
   imports: [
+    FormsModule,
     MatButtonModule,
     MatDialogModule,
     MatDatepickerModule,
@@ -39,7 +43,8 @@ export class ModalComponent {
     private FormBuilder: FormBuilder,
     private auth: SupabaseService,
     private router: Router,
-    private eventService: EventService
+    private eventService: EventService,
+    private dialogRef: DialogRef<string>
   ) {
     this.createEventForm = this.FormBuilder.group({
       eventName: this.FormBuilder.control('', [Validators.required]),
@@ -51,9 +56,17 @@ export class ModalComponent {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.loading = true;
-    this.eventService.createEvent(this.createEventForm.value);
-    this.router.navigate(['/first-page']);
+    const result = await this.eventService.createEvent(
+      this.createEventForm.value
+    );
+
+    try {
+      this.dialogRef.close('success');
+    }
+    catch (error) {
+
+    }
   }
 }

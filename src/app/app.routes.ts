@@ -35,16 +35,9 @@ export const routes: Routes = [
         (com) => com.FirstPageComponent
       ),
   },
-  // {
-  //   path: 'create-event',
-  //   canActivate: [authguardGuard],
-  //   loadComponent: () =>
-  //     import('./pages/create-event/create-event.component').then(
-  //       (com) => com.CreateEventComponent
-  //     ),
-  // },
+ 
   {
-    path: 'event-ticket-purchase',
+    path: 'event-ticket-purchase/:id',
     loadComponent: () =>
       import(
         './pages/event-ticket-purchase/event-ticket-purchase.component'

@@ -63,5 +63,4 @@ export class SupabaseService {
     return user;
   }
 
-
 }

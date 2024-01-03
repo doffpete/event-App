@@ -10,8 +10,17 @@
 </nav>
 <div class="page-body">
   <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Enter your search" />
-    <button onclick="search()">Search</button>
+    <input
+      type="text"
+      id="searchInput"
+      (keyup)="searchEvents(searchText.value)"
+      #searchText
+      placeholder="Enter your search"
+    />
+    <!-- <input type="text" id="search" [ngModel]="searchText" (ngModelChange)="searchKey($event)" placeholder="Find by name"
+    ngModel> -->
+    <!-- <button type="button"
+    >Search</button> -->
     <button
       class="btn btn-success round-button"
       type="button"
@@ -29,17 +38,19 @@
           <th>Event Name</th>
           <th>Event Venue</th>
           <th>No. of Tickets</th>
+          <th>No. of Tickets Sold</th>
           <th>Start Date</th>
           <th>End Date</th>
           <th>Event Time</th>
           <th class="action-column">Action</th>
         </tr>
       </thead>
-      <tbody *ngFor="let event of events">
+      <tbody *ngFor="let event of filteredEvents">
         <tr>
           <td>{{ event.event_name }}</td>
           <td>{{ event.venue }}</td>
           <td>{{ event.no_tickets }}</td>
+          <td>{{ event.no_of_tickets_sold }}</td>
           <td>{{ event.start_date }}</td>
           <td>{{ event.end_date }}</td>
           <td>{{ event.event_time }}</td>
@@ -48,11 +59,26 @@
               <i
                 class="bi bi-trash"
                 mat-raised-button
-                (click)="openDialog({action: 'deleteEvent', modal: 'DeleteModalComponent', extradata: event})"
+                (click)="
+                  openDialog({
+                    action: 'deleteEvent',
+                    modal: 'DeleteModalComponent',
+                    extradata: event
+                  })
+                "
               ></i>
             </button>
-            <button class="btn btn-success round-button" type="button">
-              <i class="bi bi-link-45deg"></i>
+            <button
+              class="btn btn-success round-button"
+              type="button"
+              matTooltipPosition="above"
+              matTooltip="copy link"
+              (click)="copyEventLink()"
+            >
+              <i
+                class="bi bi-link-45deg"
+                (click)="constructEventLink(event.id)"
+              ></i>
             </button>
           </td>
         </tr>
@@ -63,3 +89,5 @@
     <h3>Click on the create events button above to create an event</h3>
   </ng-template>
 </div>
+
+<!-- (click)="searchEvents() -->

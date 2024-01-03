@@ -1,4 +1,5 @@
-import { Component, Inject, Injectable, inject } from '@angular/core';
+import { DialogRef } from '@angular/cdk/dialog';
+import { Component, Inject, } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -24,7 +25,8 @@ export class DeleteModalComponent {
     public dialog: MatDialog,
     private eventService: EventService,
     private auth: SupabaseService,
-    @Inject(MAT_DIALOG_DATA) public dialogData: IDialogData
+    @Inject(MAT_DIALOG_DATA) public dialogData: IDialogData,
+    private dialogRef: DialogRef<string>
   ) {
     this.eventData = dialogData.extradata as EventResponseInterface;
   }
@@ -32,7 +34,8 @@ export class DeleteModalComponent {
   async deleteEvent(event: EventResponseInterface) {
     if (event.id) {
       await this.eventService.deleteUserEvent(event.id);
-      await this.eventService.getUserEvents();
+      this.dialogRef.close('success');
+      
     }
   }
 }

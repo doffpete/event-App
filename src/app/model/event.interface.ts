@@ -17,4 +17,5 @@ export interface EventResponseInterface {
   no_tickets: number;
   venue: string;
   event_time: string;
+  no_of_tickets_sold: number;
 }

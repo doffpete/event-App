@@ -1,0 +1,63 @@
+.event-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: cadetblue;
+  height: 100%;
+}
+
+.info-header {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 50px;
+  font-style: italic;
+  color: brown;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+p {
+    margin-top: 10px;
+  font-size: 30px;
+}
+
+.info-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-footer {
+  margin-top: 15px;
+}
+
+button {
+    background-color:burlywood;
+  margin: 10px;
+  font-size: 25px;
+  cursor: pointer;
+  color: brown;
+  border: none;
+  border-radius: 5px;
+
+}
+button:hover {
+  background-color: rgb(138, 84, 18);
+  color: white;
+}
+
+.center {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+}

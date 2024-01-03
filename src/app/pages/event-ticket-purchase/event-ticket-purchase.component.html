@@ -1,1 +1,30 @@
+<div class="event-info" *ngIf="event; else noEvent">
+  <div class="info-header">
+    <h1>{{ event.event_name }}</h1>
+    <h2>
+      venue:
+      {{ event.venue }}
+    </h2>
+  </div>
+  <br />
+  <div class="info-body">
+    <h2>Date: {{ event.start_date }} - {{ event.end_date }}</h2>
+    <h2>
+      Time:
+      {{ event.event_time }}
+    </h2>
 
+    <p>Tickets Remaining : {{ event.no_tickets - event.no_of_tickets_sold }}</p>
+  </div>
+  <br />
+
+  <div class="info-footer">
+    <button (click)="openPurchaseTicketModal()">Purchase Ticket</button>
+  </div>
+</div>
+<ng-template #noEvent>
+  <mat-spinner class="center" [diameter]="500"></mat-spinner>
+</ng-template>
+<!-- <div class="center" #noEvent>
+  
+</div> -->
