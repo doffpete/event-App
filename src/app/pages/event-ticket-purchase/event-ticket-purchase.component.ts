@@ -29,6 +29,7 @@ import { DatePipe } from '@angular/common';
 export class EventTicketPurchaseComponent implements OnInit {
   event!: EventResponseInterface;
   id!: number;
+  buttonDisabled: boolean | undefined;
 
   constructor(
     public dialog: MatDialog,
@@ -47,11 +48,15 @@ export class EventTicketPurchaseComponent implements OnInit {
   }
 
   openPurchaseTicketModal() {
-    const dialogRef = this.dialog.open(PurchaseTicketModalComponent, {
-      data: this.event,
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.getEventById();
-    });
+    if (this.event.no_of_tickets_sold === this.event.no_tickets) {
+      alert('Sorry This Ticket is sold out ');
+    } else {
+      const dialogRef = this.dialog.open(PurchaseTicketModalComponent, {
+        data: this.event,
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        this.getEventById();
+      });
+    }
   }
 }

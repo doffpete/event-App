@@ -137,7 +137,7 @@ export class FirstPageComponent implements OnInit {
 
 export interface IDialogData {
   action: string;
-  modal: string;
+  modal: string; 
   extradata: unknown;
   callToAction?: {
     question: string;

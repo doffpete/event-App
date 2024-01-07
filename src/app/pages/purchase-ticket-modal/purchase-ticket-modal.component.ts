@@ -31,8 +31,8 @@ export class PurchaseTicketModalComponent {
       .purchaseTicket(this.data)
       .then(() => {
         this.dialogRef.close();
-        alert('you have booked a ticket!!');
         this.reload.emit();
+        alert('you have booked a ticket!!');
       })
       .catch(() => {
         alert('An error occured!');
