@@ -4,7 +4,7 @@ import {
 } from './../../model/event.interface';
 import { EventService } from './../../../services/event.service';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, NgModelGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
@@ -18,6 +18,8 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { LogoutModalComponent } from '../logout-modal/logout-modal.component';
+import { ActionModalComponent } from '../action-modal/action-modal.component';
 
 @Component({
   selector: 'app-first-page',
@@ -47,7 +49,7 @@ export class FirstPageComponent implements OnInit {
   events!: EventResponseInterface[];
   async getEvents() {
     await this.eventService.getUserEvents().then((res) => {
-      console.log(res);
+      // console.log(res);
       this.events = res;
       this.filteredEvents = res;
     });
@@ -55,7 +57,6 @@ export class FirstPageComponent implements OnInit {
 
   ngOnInit() {
     this.getEvents();
-    // console.log(window);
   }
 
   logout() {
@@ -86,18 +87,19 @@ export class FirstPageComponent implements OnInit {
     });
   }
 
-  uniqueLink!: string;
+  openLogoutModal() {
+    const dialogRef = this.dialog.open(LogoutModalComponent);
 
-  purchaseTicketRoute = 'event-ticket-purchase';
-
-  constructEventLink(eventId: any) {
-    const link = `${window.location.origin}/${this.purchaseTicketRoute}/${eventId}`;
-    this.uniqueLink = link;
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   this.getEvents();
+    // });
   }
 
-  copyEventLink() {
-    return this.clipboard.copy(this.uniqueLink);
+  openActionModal() {
+    const dialogRef = this.dialog.open(ActionModalComponent);
   }
+
+  // purchaseTicketRoute = 'event-ticket-purchase';
 
   openDialog(dialogOptions: IDialogData) {
     const options: MatDialogConfig = {
@@ -112,32 +114,32 @@ export class FirstPageComponent implements OnInit {
       case 'createEvent':
         modal = this.dialog.open(ModalComponent, options);
         break;
-      case 'deleteEvent':
-        modal = this.dialog.open(DeleteModalComponent, options);
-        modal.afterClosed().subscribe((result) => {
-          this.getEvents();
-          console.log(result);
-        });
-        break;
-      case 'linkEvent':
-        console.info('');
-        break;
-      default:
-        break;
+      // case 'deleteEvent':
+      //   modal = this.dialog.open(DeleteModalComponent, options);
+      //   modal.afterClosed().subscribe((result) => {
+      //     this.getEvents();
+      //     console.log(result);
+      //   });
+      //   break;
+      // case 'linkEvent':
+      //   console.info('');
+      //   break;
+      // default:
+      //   break;
     }
   }
 
-  openDeleteEventDialog(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string
-  ) {
-    const dialogRef = this.dialog.open(DeleteModalComponent);
-  }
+  // openDeleteEventDialog(
+  //   enterAnimationDuration: string,
+  //   exitAnimationDuration: string
+  // ) {
+  //   const dialogRef = this.dialog.open(DeleteModalComponent);
+  // }
 }
 
 export interface IDialogData {
   action: string;
-  modal: string; 
+  modal: string;
   extradata: unknown;
   callToAction?: {
     question: string;

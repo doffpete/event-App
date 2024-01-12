@@ -19,3 +19,9 @@ export interface EventResponseInterface {
   event_time: string;
   no_of_tickets_sold: number;
 }
+
+export interface BookEventInterface {
+  firstName: string;
+  lastName: string;
+  eventId: string;
+}

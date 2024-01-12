@@ -24,6 +24,9 @@ export class SupabaseService {
     });
   }
 
+
+  
+
   // Login function
   signIn(email: string, password: string) {
     return this.supabase_client.auth.signInWithPassword({

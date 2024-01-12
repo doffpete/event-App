@@ -6,7 +6,7 @@ import { SupabaseService } from '../../../services/supabase.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { PurchaseTicketModalComponent } from '../purchase-ticket-modal/purchase-ticket-modal.component';
+import { BookTicketSubModalComponent } from '../book-ticket-sub-modal/book-ticket-sub-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,17 +41,18 @@ export class EventTicketPurchaseComponent implements OnInit {
   async getEventById() {
     const data = this.route.snapshot.params['id'];
     this.event = await this.eventService.getEventById(data);
+    console.log(this.event);
   }
 
   ngOnInit() {
     this.getEventById();
   }
 
-  openPurchaseTicketModal() {
+  openBookTicketSubModal() {
     if (this.event.no_of_tickets_sold === this.event.no_tickets) {
       alert('Sorry This Ticket is sold out ');
     } else {
-      const dialogRef = this.dialog.open(PurchaseTicketModalComponent, {
+      const dialogRef = this.dialog.open(BookTicketSubModalComponent, {
         data: this.event,
       });
       dialogRef.afterClosed().subscribe(() => {

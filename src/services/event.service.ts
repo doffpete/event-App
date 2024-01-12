@@ -1,4 +1,5 @@
 import {
+  BookEventInterface,
   EventInterface,
   EventResponseInterface,
 } from './../app/model/event.interface';
@@ -33,6 +34,23 @@ export class EventService {
         no_tickets: event.totalTickets,
         venue: event.eventVenue,
         event_time: event.eventTime,
+      })
+      .select();
+
+    if (error) {
+      console.log(error);
+      throw new Error(error.message);
+    }
+  }
+
+  async createBookEventData(event: BookEventInterface): Promise<void> {
+    const supabase = this.supabase.supabaseClient;
+    const { data, error } = await supabase
+      .from('booked_tickets')
+      .insert({
+        event_id: event.eventId,
+        first_name: event.firstName,
+        last_name: event.lastName,
       })
       .select();
 
@@ -87,7 +105,7 @@ export class EventService {
     return data as unknown as EventResponseInterface;
   }
 
-  async purchaseTicket(event: EventResponseInterface) {
+  async bookTicket(event: EventResponseInterface) {
     const supabase = this.supabase.supabaseClient;
     const { data, error } = await supabase
       .from('events')

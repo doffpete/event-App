@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PurchaseTicketModalComponent } from './purchase-ticket-modal.component';
+import { PurchaseTicketModalComponent } from './book-ticket-modal.component';
 
 describe('PurchaseTicketModalComponent', () => {
   let component: PurchaseTicketModalComponent;
@@ -8,10 +8,9 @@ describe('PurchaseTicketModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PurchaseTicketModalComponent]
-    })
-    .compileComponents();
-    
+      imports: [PurchaseTicketModalComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(PurchaseTicketModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

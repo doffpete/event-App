@@ -1,93 +1,126 @@
-<nav class="nav-bar">
-  <h2>Welcome Back, Dear User!</h2>
-  <button
-    class="btn btn-outline-primary round-button mx-2"
-    type="button"
-    (click)="logout()"
-  >
-    LOGOUT
-  </button>
-</nav>
-<div class="page-body">
-  <div class="search-container">
-    <input
+<div class="home-page">
+  <nav class="nav-bar">
+    <div class="logo-div">
+      <h1 class="logo-name">DP</h1>
+      <h5 class="logo-theme">Organizing your events</h5>
+    </div>
+    <!-- <div class="second-div">
+      <input
+      class="search-bar"
       type="text"
       id="searchInput"
       (keyup)="searchEvents(searchText.value)"
       #searchText
-      placeholder="Enter your search"
+      placeholder="Search Events"
     />
-    <!-- <input type="text" id="search" [ngModel]="searchText" (ngModelChange)="searchKey($event)" placeholder="Find by name"
-    ngModel> -->
-    <!-- <button type="button"
-    >Search</button> -->
-    <button
-      class="btn btn-success round-button"
-      type="button"
-      (click)="openCreateEventModal()"
-    >
-      Create Event
-    </button>
-  </div>
+    </div> -->
 
-  <h1>My Events</h1>
-  <div class="event-container" *ngIf="events?.length; else noData">
-    <table *ngIf="events">
-      <thead>
-        <tr>
-          <th>Event Name</th>
-          <th>Event Venue</th>
-          <th>No. of Tickets</th>
-          <th>No. of Tickets Sold</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Event Time</th>
-          <th class="action-column">Action</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let event of filteredEvents">
-        <tr>
-          <td>{{ event.event_name }}</td>
-          <td>{{ event.venue }}</td>
-          <td>{{ event.no_tickets }}</td>
-          <td>{{ event.no_of_tickets_sold }}</td>
-          <td>{{ event.start_date | date }}</td>
-          <td>{{ event.end_date | date }}</td>
-          <td>{{ event.event_time }}</td>
-          <td class="i-action">
-            <button class="btn btn-success round-button" type="button">
-              <i
-                class="bi bi-trash"
-                mat-raised-button
-                (click)="
-                  openDialog({
-                    action: 'deleteEvent',
-                    modal: 'DeleteModalComponent',
-                    extradata: event
-                  })
-                "
-              ></i>
-            </button>
-            <button
-              class="btn btn-success round-button"
-              type="button"
-              matTooltipPosition="above"
-              matTooltip="copy link"
-              (click)="copyEventLink()"
-            >
-              <i
-                class="bi bi-link-45deg"
-                (click)="constructEventLink(event.id)"
-              ></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="id-div">
+      <button class="create-btn" type="button" (click)="openCreateEventModal()">
+        <i class="bi bi-plus-lg"></i>NEW EVENT
+      </button>
+
+      <button class="user-id-btn" type="button" (click)="openLogoutModal()">
+        D
+      </button>
+    </div>
+
+    <!-- <button
+      class="btn btn-outline-primary round-button mx-2"
+      type="button"
+      (click)="logout()"
+    >
+      LOGOUT
+    </button> -->
+  </nav>
+
+  <div class="page-body">
+    <div class="body-header">
+      <h1 class="event-header">Your Events</h1>
+    </div>
+    <div class="events-detail" *ngIf="events?.length; else noData">
+      <div class="event-card" *ngFor="let event of filteredEvents">
+        <div class="event-card-header">
+          <h2>
+            {{ event.event_name }}
+            <i
+              class="bi bi-caret-up"
+              style="cursor: pointer"
+              (click)="openActionModal()"
+            ></i>
+          </h2>
+        </div>
+        <div class="event-card-body">
+          <p>{{ event.start_date | date }} - {{ event.end_date | date }}</p>
+          <p>{{ event.event_time }}</p>
+          <p>{{ event.venue }}</p>
+        </div>
+      </div>
+    </div>
+    <ng-template #noData>
+      <h3>Click on the create events button above to create an event</h3>
+    </ng-template>
   </div>
-  <ng-template #noData>
-    <h3>Click on the create events button above to create an event</h3>
-  </ng-template>
 </div>
 
-<!-- (click)="searchEvents() -->
+<!-- <div class="event-container" *ngIf="events?.length; else noData">
+      <table *ngIf="events">
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Event Venue</th>
+            <th>No. of Tickets</th>
+            <th>No. of Tickets Sold</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Event Time</th>
+            <th class="action-column">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let event of filteredEvents">
+          <tr>
+            <td>{{ event.event_name }}</td>
+            <td>{{ event.venue }}</td>
+            <td>{{ event.no_tickets }}</td>
+            <td>{{ event.no_of_tickets_sold }}</td>
+            <td>{{ event.start_date | date }}</td>
+            <td>{{ event.end_date | date }}</td>
+            <td>{{ event.event_time }}</td>
+            <td class="i-action">
+              <button class="btn btn-success round-button" type="button">
+                <i
+                  class="bi bi-trash"
+                  mat-raised-button
+                  (click)="
+                    openDialog({
+                      action: 'deleteEvent',
+                      modal: 'DeleteModalComponent',
+                      extradata: event
+                    })
+                  "
+                ></i>
+              </button>
+              <button
+                class="btn btn-success round-button"
+                type="button"
+                matTooltipPosition="above"
+                matTooltip="copy link"
+                (click)="copyEventLink()"
+              >
+                <i
+                  class="bi bi-link-45deg"
+                  (click)="constructEventLink(event.id)"
+                ></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noData>
+      <h3>Click on the create events button above to create an event</h3>
+    </ng-template>
+  </div>
+  
+ 
+   -->

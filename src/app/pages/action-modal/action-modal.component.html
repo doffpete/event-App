@@ -1,0 +1,27 @@
+<div class="i-action">
+  <button class="btn btn-success round-button" type="button">
+    <i
+      class="bi bi-trash"
+      mat-raised-button
+      (click)="
+        openDialog({
+          action: 'deleteEvent',
+          modal: 'DeleteModalComponent',
+          extradata: event
+        })
+      "
+    ></i>
+  </button>
+  <button
+    class="btn btn-success round-button"
+    type="button"
+    matTooltipPosition="above"
+    matTooltip="copy link"
+    (click)="copyEventLink()"
+  >
+    <i class="bi bi-link-45deg" (click)="constructEventLink(event.id)"></i>
+  </button>
+
+  <!--(click)="constructEventLink(event.id)"  -->
+</div>
+
