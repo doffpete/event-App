@@ -1,5 +1,6 @@
 import {
   BookEventInterface,
+  BookedEventResponseInterface,
   EventInterface,
   EventResponseInterface,
 } from './../app/model/event.interface';
@@ -21,6 +22,14 @@ export class EventService {
     }
   }
 
+  // getTotalNumberOfEventsPerUserId() {
+  //   const supabase = this.supabase.supabaseClient;
+  //   const { data, count } =  supabase
+  // .from('events')
+  // .select('*', { count: 'exact' })
+  // }
+
+
   async createEvent(event: EventInterface): Promise<void> {
     const user = this.userProfile();
     const supabase = this.supabase.supabaseClient;
@@ -34,23 +43,6 @@ export class EventService {
         no_tickets: event.totalTickets,
         venue: event.eventVenue,
         event_time: event.eventTime,
-      })
-      .select();
-
-    if (error) {
-      console.log(error);
-      throw new Error(error.message);
-    }
-  }
-
-  async createBookEventData(event: BookEventInterface): Promise<void> {
-    const supabase = this.supabase.supabaseClient;
-    const { data, error } = await supabase
-      .from('booked_tickets')
-      .insert({
-        event_id: event.eventId,
-        first_name: event.firstName,
-        last_name: event.lastName,
       })
       .select();
 
@@ -75,6 +67,50 @@ export class EventService {
 
     return data as unknown as EventResponseInterface[];
   }
+
+
+  //  getCount = await supabase
+  //  .from('events')
+  // .select('user_id', const FetchOptions:any(count: CountOption.exact))
+  // .eq('type', 'concept')
+  // .select();
+
+  
+
+  async createBookEventData(event: BookEventInterface): Promise<void> {
+    const supabase = this.supabase.supabaseClient;
+    const { data, error } = await supabase
+      .from('booked_tickets')
+      .insert({
+        event_id: event.eventId,
+        first_name: event.firstName,
+        last_name: event.lastName,
+      })
+      .select();
+
+    if (error) {
+      console.log(error);
+      throw new Error(error.message);
+    }
+  }
+
+  async getBookedTickets(eventID:string): Promise<BookedEventResponseInterface[]> {
+
+    const supabase = this.supabase.supabaseClient;
+    const { data, error } = await supabase
+      .from('booked_tickets')
+      .select('*')
+      .eq('event_id', eventID ); 
+
+    if (error) {
+      console.log(error);
+      return error as unknown as BookedEventResponseInterface[];
+    }
+
+    return data as unknown as BookedEventResponseInterface[];
+  }
+
+
 
   async deleteUserEvent(eventId: string) {
     const supabase = this.supabase.supabaseClient;

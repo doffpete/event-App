@@ -7,3 +7,34 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.nav-bar {
+  margin: 0px;
+  height: 70px;
+  background-color: hsla(300, 18%, 11%, 0.943);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.logo-div {
+  margin-top: 10px;
+  margin-left: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-name {
+  margin-left: 50px;
+  font-size: 28px;
+  color: darkgrey;
+}
+
+.logo-theme {
+  align-items: center;
+  color: darkgrey;
+  margin-left: 9px;
+}

@@ -8,7 +8,7 @@ export interface EventInterface {
 }
 
 export interface EventResponseInterface {
-  id?: string;
+  id: string;
   created_at?: string;
   user_id?: string;
   event_name: string;
@@ -24,4 +24,11 @@ export interface BookEventInterface {
   firstName: string;
   lastName: string;
   eventId: string;
+}
+
+export interface BookedEventResponseInterface {
+  id : string;
+  event_id: string;
+  first_name: string;
+  last_name : string;
 }

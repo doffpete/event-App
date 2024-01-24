@@ -1,0 +1,61 @@
+.event-card {
+  margin-left: 15px;
+  background-color: hsla(312, 15%, 94%, 0.616);
+  height: 350px;
+  min-width: 280px;
+  margin: 30px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.event-card-header {
+  background-color: cadetblue;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 150px;
+  align-items: center;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  justify-content: center;
+}
+
+button:hover {
+  background-color: rgb(67, 104, 104);
+  color: brown;
+}
+
+.event-card-body {
+  margin: 25px 15px;
+  justify-content: flex-start;
+}
+.card-body-icons {
+  display: flex;
+}
+.p-icon {
+  margin-left: 8px;
+}
+
+.eventBookers {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.booker-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: rgba(225, 46, 79, 0.505);
+  color: white;
+}
+
+.user-id-booked {
+  font-size: 20px;
+  align-items: center;
+  padding-top: 5px;
+}

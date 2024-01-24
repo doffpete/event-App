@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../environment/environment';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -24,8 +23,33 @@ export class SupabaseService {
     });
   }
 
+  userProfile() {
+    let user = localStorage.getItem('user');
+    if (user) {
+      return JSON.parse(user);
+    } else {
+      return null;
+    }
+  }
 
-  
+  async createUserProfile(firstName: string, lastName: string, email: string) {
+    const user = this.userProfile();
+    const supabase = this.supabase_client;
+    const { data, error } = await supabase
+      .from('profile')
+      .insert({
+        
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+      })
+      .select();
+
+    if (error) {
+      console.log(error);
+      throw new Error(error.message);
+    }
+  }
 
   // Login function
   signIn(email: string, password: string) {
@@ -65,5 +89,4 @@ export class SupabaseService {
     const user = localStorage.getItem('user');
     return user;
   }
-
 }

@@ -4,7 +4,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 
-import { EventService } from './../../../services/event.service';
+import { EventService } from '../../../services/event.service';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,10 +32,10 @@ import {
     MatInputModule,
   ],
 
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css',
+  templateUrl: './new-event-modal.component.html',
+  styleUrl: './new-event-modal.component.css',
 })
-export class ModalComponent {
+export class NewEventModalComponent {
   createEventForm!: FormGroup;
   loading = false;
   constructor(
@@ -64,9 +64,6 @@ export class ModalComponent {
 
     try {
       this.dialogRef.close('success');
-    }
-    catch (error) {
-
-    }
+    } catch (error) {}
   }
 }

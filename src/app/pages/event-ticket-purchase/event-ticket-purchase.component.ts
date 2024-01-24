@@ -6,11 +6,10 @@ import { SupabaseService } from '../../../services/supabase.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { BookTicketSubModalComponent } from '../book-ticket-sub-modal/book-ticket-sub-modal.component';
+import { BookTicketModalComponent } from '../book-ticket-modal/book-ticket-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-// import { Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -52,7 +51,7 @@ export class EventTicketPurchaseComponent implements OnInit {
     if (this.event.no_of_tickets_sold === this.event.no_tickets) {
       alert('Sorry This Ticket is sold out ');
     } else {
-      const dialogRef = this.dialog.open(BookTicketSubModalComponent, {
+      const dialogRef = this.dialog.open(BookTicketModalComponent, {
         data: this.event,
       });
       dialogRef.afterClosed().subscribe(() => {

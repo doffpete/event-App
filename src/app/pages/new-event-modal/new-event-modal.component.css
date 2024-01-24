@@ -1,6 +1,6 @@
-.event-container {
+.modal-container {
   text-align: center;
-  
+  width: 600px;
 }
 .event-body {
   display: inline;
@@ -18,26 +18,37 @@ form {
 }
 
 label {
-  margin-top: 5px;
+  margin-top: 1px;
 }
 
 input {
   padding: 5px;
   margin-bottom: 10px;
-  width: 250px;
+  width: 500px;
   border-radius: none;
 }
 
 button {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 7px;
+  padding: 5px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 250px;
+  width: 70px;
+  color: white;
 }
 
-button:hover {
-  background-color: #45a049;
+.base-btns {
+  display: flex;
+  justify-content: space-between;
 }
+.cancel-btn {
+  background-color: rgb(160, 43, 43);
+  color: white;
+}
+
+
+.create-btn {
+  background-color: rgb(59, 141, 59);
+  color: white;
+}
+

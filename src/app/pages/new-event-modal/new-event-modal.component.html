@@ -1,0 +1,63 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel" mat-dialog-title>
+      Create Your Event
+    </h5>
+  </div>
+  <mat-dialog-content class="mat-typography">
+    <div class="event-body">
+      <form [formGroup]="createEventForm" (ngSubmit)="onSubmit()">
+        <div class="name-venue">
+          <input
+            type="text"
+            formControlName="eventName"
+            placeholder="Event Name"
+            required
+          />
+          <br />
+
+          <input
+            type="text"
+            formControlName="eventVenue"
+            placeholder="Event Venue"
+            required
+          />
+        </div>
+
+        <input
+          type="number"
+          formControlName="totalTickets"
+          placeholder="No. of Tickets"
+          required
+        />
+
+        <div class="date-time">
+          <label for="event-date">Event Date (start date - end date):</label>
+          <input type="date" formControlName="startDate" required /><br />
+          <input type="date" formControlName="endDate" required /><br />
+          <label for="event-time">Event Time:</label>
+          <input type="time" formControlName="eventTime" required />
+        </div>
+
+        <mat-dialog-actions align="end">
+          <div class="base-btns">
+            <button class="cancel-btn" mat-button mat-dialog-close>
+              Cancel
+            </button>
+            <button
+              class="create-btn"
+              mat-button
+              mat-dialog-close
+              type="submit"
+              [disabled]="createEventForm.invalid || loading"
+            >
+              {{ loading ? "Creating Event..." : "create" }}
+            </button>
+          </div>
+        </mat-dialog-actions>
+      </form>
+    </div>
+  </mat-dialog-content>
+</div>
+
+

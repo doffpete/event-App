@@ -1,4 +1,3 @@
-import { LoginComponent } from '../login/login.component';
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import {
@@ -27,9 +26,9 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.registerForm = this.FormBuilder.group({
-      name: FormBuilder.control('', [
-        Validators.required,
-      ]),
+      firstName: FormBuilder.control('', [Validators.required]),
+
+      lastName: FormBuilder.control('', [Validators.required]),
 
       email: FormBuilder.control('', [
         Validators.required,
@@ -48,6 +47,19 @@ export class RegisterComponent {
     this.auth
       .signUp(this.registerForm.value.email, this.registerForm.value.password)
       .then((res) => {
+        this.auth
+          .createUserProfile(
+            this.registerForm.value.firstName,
+            this.registerForm.value.lastName,
+            this.registerForm.value.email
+          )
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        console.log(this.auth);
         if (res.data.user?.role === 'authenticated') {
           this.router.navigate(['/login']);
         }

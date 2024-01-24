@@ -1,42 +1,96 @@
-// import { SupabaseService } from '../../../services/supabase.service';
-// import { Component, EventEmitter, Inject } from '@angular/core';
-// import { MatButtonModule } from '@angular/material/button';
-// import { DialogRef } from '@angular/cdk/dialog';
-// import { EventService } from '../../../services/event.service';
-// import { EventResponseInterface } from '../../model/event.interface';
+import { Component, EventEmitter, Inject } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, Validators } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import {
+  MatDialogModule,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialog,
+} from '@angular/material/dialog';
+import { FormGroup, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import {
+  EventInterface,
+  EventResponseInterface,
+} from '../../model/event.interface';
+import { EventService } from '../../../services/event.service';
+import { SupabaseService } from '../../../services/supabase.service';
 
-// import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+@Component({
+  selector: 'app-book-ticket-modal',
+  standalone: true,
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatSnackBarModule,
+  ],
+  templateUrl: './book-ticket-modal.component.html',
+  styleUrl: './book-ticket-modal.component.css',
+})
+export class BookTicketModalComponent {
+  bookEventForm!: FormGroup;
+  event!: EventInterface;
 
-// @Component({
-//   selector: 'app-book-ticket-modal',
-//   standalone: true,
-//   imports: [MatButtonModule, MatDialogModule],
-//   templateUrl: './book-ticket-modal.component.html',
-//   styleUrl: './book-ticket-modal.component.css',
-// })
-// export class BookTicketModalComponent {
-//   event!: EventResponseInterface;
+  constructor(
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog,
+    private FormBuilder: FormBuilder,
+    private auth: SupabaseService,
+    private eventService: EventService,
+    public dialogRef: MatDialogRef<BookTicketModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: EventResponseInterface
+  ) {
+    console.log(data);
 
-//   constructor(
-//     private eventService: EventService,
-//     private dialogRef: DialogRef<BookTicketModalComponent>,
-//     private auth: SupabaseService,
-//     @Inject(MAT_DIALOG_DATA) public data: EventResponseInterface
-//   ) {}
+    this.bookEventForm = this.FormBuilder.group({
+      eventId: this.FormBuilder.control(data.id),
+      firstName: this.FormBuilder.control('', [Validators.required]),
+      lastName: this.FormBuilder.control('', [Validators.required]),
+    });
+  }
 
-//   reload = new EventEmitter();
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  reload = new EventEmitter();
 
-//   async onBookTicket() {
-//     this.eventService
-//       .bookTicket(this.data)
-//       .then(() => {
-//         this.reload.emit();
-//         alert('you have booked a ticket!!');
-//       })
-//       .catch(() => {
-//         alert('An error occured!');
-//       });
-//     this.dialogRef.close();
+  async onSubmit() {
+    await this.eventService
+      .createBookEventData(this.bookEventForm.value)
+      .then(() => {
+        this.onBookTicket();
+      });
+    console.log(this.bookEventForm.value);
+  }
+  openSnackBar() {
+    this._snackBar.open('You have booked a ticket!!', 'close', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
 
-//   }
-// }
+  async onBookTicket() {
+    this.eventService
+      .bookTicket(this.data)
+      .then(() => {
+        this.reload.emit();
+        this.openSnackBar();
+      })
+      .catch(() => {
+        alert('An error occured!');
+      });
+    this.dialogRef.close();
+  }
+}

@@ -48,28 +48,58 @@
   justify-content: space-between;
   align-items: center;
 }
-
-button {
-  cursor: pointer;
-  background-color: rgba(225, 46, 79, 0.505);
-  color: darkgrey;
-  border: none;
-  border-radius: 15px;
+.menu-btn {
+  background-color: none;
+}
+.log-out-menu {
+  align-items: center;
   display: flex;
   justify-content: center;
 }
-button:hover {
-  background-color: rgba(159, 57, 65, 0.477);
-  color: white;
+
+button {
+  cursor: pointer;
+  border: none;
+  
+  justify-content: center;
 }
+
+button:hover {
+  background-color: rgb(67, 104, 104);
+  color: brown;
+}
+
+h2 {
+  font-size: 9px;
+  color: rgb(225, 199, 199);
+  margin-right: 8px;
+  padding-top: 15px;
+}
+
+.my-events-btn {
+  align-items: center;
+  width: 30px;
+  height: 20px;
+  border-radius: 5px;
+  margin-right: 20px;
+  color: darkgrey;
+  background-color: rgba(225, 46, 79, 0.505);
+}
+
 .create-btn {
+  border-radius: 15px;
+  background-color: rgba(225, 46, 79, 0.505);
+  color: darkgrey;
   font-size: 9px;
   width: 100px;
   align-items: center;
   height: 26px;
   margin-right: 20px;
 }
+
 .user-id-btn {
+  border-radius: 15px;
+  background-color: rgba(225, 46, 79, 0.505);
   width: 50px;
   height: 45px;
   border-radius: 50%;
@@ -96,22 +126,23 @@ input {
 
 .events-detail {
   display: flex;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-left: 15px;
-  justify-content: flex-start;
-  align-items: center;
+
+  overflow-x: scroll;
 }
 
 .event-card {
   margin-left: 15px;
   background-color: hsla(312, 15%, 94%, 0.616);
   height: 350px;
-  width: 220px;
+  min-width: 280px;
   margin: 30px 30px;
   border-radius: 8px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
 }
 
-.event-card-header {
+/* .event-card-header {
   background-color: cadetblue;
   display: flex;
   justify-content: center;
@@ -122,37 +153,12 @@ input {
 }
 
 .event-card-body {
-  margin: 35px 15px;
+  margin: 25px 15px;
   justify-content: flex-start;
 }
-/* table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  background-color: #007bff;
-  color: #fff;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-
-.i-action {
+.card-body-icons {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
-
-th.action-column {
-  width: 4px;
-} */
+.p-icon {
+  margin-left: 8px;
+}  */

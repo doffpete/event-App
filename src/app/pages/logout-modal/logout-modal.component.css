@@ -1,9 +1,0 @@
-button {
-    cursor: pointer;
-    border: none;
-    border-radius: 15px;
-  }
-  button:hover {
-    background-color: rgba(159, 57, 65, 0.477);
-    color: white;
-  }

@@ -1,5 +1,5 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, Inject, } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -35,7 +35,6 @@ export class DeleteModalComponent {
     if (event.id) {
       await this.eventService.deleteUserEvent(event.id);
       this.dialogRef.close('success');
-      
     }
   }
 }

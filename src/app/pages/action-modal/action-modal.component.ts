@@ -11,7 +11,6 @@ import { EventResponseInterface } from '../../model/event.interface';
 import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { SupabaseService } from '../../../services/supabase.service';
-import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-action-modal',
@@ -21,7 +20,6 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrl: './action-modal.component.css',
 })
 export class ActionModalComponent {
-
   constructor(
     private auth: SupabaseService,
     private eventService: EventService,
@@ -69,7 +67,7 @@ export class ActionModalComponent {
     }
   }
 
-  constructEventLink(eventId:any) {
+  constructEventLink(eventId: any) {
     const link = `${window.location.origin}/${this.purchaseTicketRoute}/${eventId}`;
     this.uniqueLink = link;
   }

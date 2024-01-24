@@ -1,10 +1,11 @@
 .container {
-  background-color: #fff;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
   margin: 0%;
+  background-color: hsla(300, 7%, 8%, 0.329);
+  min-height: 100vh;
 }
 
 .form-header {
@@ -28,7 +29,7 @@ input {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: hsla(300, 18%, 11%, 0.943);
   color: #fff;
   padding: 10px;
   border: none;
@@ -37,5 +38,5 @@ button {
 }
 
 button:hover {
-  background-color: #0dc30d;
+  background-color: hsla(300, 43%, 28%, 0.943);
 }
