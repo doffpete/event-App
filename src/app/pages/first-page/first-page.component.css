@@ -60,7 +60,6 @@
 button {
   cursor: pointer;
   border: none;
-  
   justify-content: center;
 }
 
@@ -108,13 +107,11 @@ h2 {
   font-size: 20px;
 }
 
-.body-header {
+.event-header {
   margin-top: 30px;
-}
-
-.body-header h1 {
   margin-left: 50px;
 }
+
 input {
   padding: 10px;
   width: 40%;
@@ -134,31 +131,10 @@ input {
 
 .event-card {
   margin-left: 15px;
-  background-color: hsla(312, 15%, 94%, 0.616);
+  background-color: whitesmoke;
   height: 350px;
   min-width: 280px;
   margin: 30px 30px;
   border-radius: 8px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
 }
-
-/* .event-card-header {
-  background-color: cadetblue;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  height: 150px;
-  align-items: center;
-  border: none;
-}
-
-.event-card-body {
-  margin: 25px 15px;
-  justify-content: flex-start;
-}
-.card-body-icons {
-  display: flex;
-}
-.p-icon {
-  margin-left: 8px;
-}  */

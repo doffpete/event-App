@@ -32,7 +32,10 @@ export class EventCardComponent implements OnInit {
 
   ngOnInit() {
     this.getBookedTicketByUsers();
+    this.getRandomColorForCard();
   }
+
+  randomColor!: string;
 
   bookedTicketsByUsers!: BookedEventResponseInterface[];
 
@@ -42,6 +45,11 @@ export class EventCardComponent implements OnInit {
   @Input() event!: EventResponseInterface;
 
   @Output() reloadAllEvents = new EventEmitter();
+
+
+  displayNote(){
+
+  }
 
   getBookedTicketByUsers() {
     this.eventService.getBookedTickets(this.event.id).then((res) => {
@@ -58,17 +66,28 @@ export class EventCardComponent implements OnInit {
   copyEventLink(eventId: string) {
     const link = `${window.location.origin}/${this.purchaseTicketRoute}/${eventId}`;
     this.uniqueLink = link;
+    
 
     return this.clipboard.copy(this.uniqueLink);
   }
 
-getRandomColorForCard(){
-  const eventCardColorsArray = ['#00FFFF', '#FF00FF', '#FF0080', '#FF8000', '#B2D732', '#347C98', '#8000FF'];  
-  const randomColor = eventCardColorsArray[Math.floor(Math.random() * eventCardColorsArray.length)]; 
-
-}
-
-   
+  getRandomColorForCard() {
+    const eventCardColorsArray = [
+      '#00FFFF',
+      '#FF00FF',
+      '#FF0080',
+      '#FF8000',
+      '#B2D732',
+      '#347C98',
+      '#8000FF',
+    ];
+    const randomColor =
+      eventCardColorsArray[
+        Math.floor(Math.random() * eventCardColorsArray.length)
+      ];
+    this.randomColor = randomColor;
+    console.log(randomColor);
+  }
 
   openDialog(dialogOptions: IDialogData) {
     const options: MatDialogConfig = {
