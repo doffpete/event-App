@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -8,6 +8,12 @@ import {
 } from '@angular/forms';
 import { SupabaseService } from '../../../services/supabase.service';
 import { Router } from '@angular/router';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +27,7 @@ export class LoginComponent {
   loginForm!: FormGroup;
 
   constructor(
+    private _snackBar: MatSnackBar,
     private FormBuilder: FormBuilder,
     private auth: SupabaseService,
     private router: Router
@@ -37,6 +44,19 @@ export class LoginComponent {
       ]),
     });
   }
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  openSnackBar() {
+    const snackBarRef = this._snackBar.open(
+      'User Email or Password Does Not Exist',
+      'close',
+      {
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      }
+    );
+  }
 
   public onSubmit() {
     this.loading = true;
@@ -47,9 +67,11 @@ export class LoginComponent {
           localStorage.setItem(
             'access_token',
             JSON.stringify(res.data.session?.access_token)
-          ); 
+          );
           this.router.navigate(['/first-page']);
           localStorage.setItem('user', JSON.stringify(res.data.user));
+        } else {
+          this.openSnackBar();
         }
       })
       .catch((err) => {})

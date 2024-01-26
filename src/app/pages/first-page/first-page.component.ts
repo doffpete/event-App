@@ -1,7 +1,4 @@
-import {
-  EventInterface,
-  EventResponseInterface,
-} from './../../model/event.interface';
+import { EventResponseInterface } from './../../model/event.interface';
 import { EventService } from './../../../services/event.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,14 +11,9 @@ import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 
-import {
-  MatDialog,
-  MatDialogConfig,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 import { ActionModalComponent } from '../action-modal/action-modal.component';
-import { style } from '@angular/animations';
+
 import { EventCardComponent } from '../event-card/event-card.component';
 
 @Component({
@@ -51,10 +43,13 @@ export class FirstPageComponent implements OnInit {
     private clipboard: Clipboard
   ) {}
 
+  sortEvents!: EventResponseInterface[];
   filteredEvents!: EventResponseInterface[];
   purchaseTicketRoute = 'event-ticket-purchase';
   uniqueLink!: string;
   events!: EventResponseInterface[];
+
+  searchText = '';
 
   async getEvents() {
     await this.eventService.getUserEvents().then((res) => {
@@ -65,7 +60,6 @@ export class FirstPageComponent implements OnInit {
 
   ngOnInit() {
     this.userData = this.auth.getSessionFromLocalStorage();
-    // console.log(this.userData);
     this.getEvents();
   }
 
@@ -81,7 +75,47 @@ export class FirstPageComponent implements OnInit {
       });
   }
 
- 
+  sortEventsByTime() {
+    const sortByTime = this.events.sort((a: any, b: any): any => {
+      if (a.event_time < b.event_time) {
+        return -1;
+      } else if (a.event_time > b.event_time) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    this.sortEvents = sortByTime;
+  }
+
+  sortEventsByStartDate() {
+    const sortByStartDate = this.events.sort((a: any, b: any): any => {
+      if (a.start_date < b.start_date) {
+        return -1;
+      } else if (a.start_date > b.start_date) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    this.sortEvents = sortByStartDate;
+  }
+
+  sortEventsByEndDate() {
+    const sortByEndDate = this.events.sort((a: any, b: any): any => {
+      if (a.end_date < b.end_date) {
+        return -1;
+      } else if (a.end_date > b.end_date) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    this.sortEvents = sortByEndDate;
+  }
 
   searchEvents(searchText: string) {
     const trimmedQuery = searchText.trim().toLowerCase();
@@ -111,41 +145,6 @@ export class FirstPageComponent implements OnInit {
   copyEventLink() {
     return this.clipboard.copy(this.uniqueLink);
   }
-
-  // openDialog(dialogOptions: IDialogData) {
-  //   const options: MatDialogConfig = {
-  //     width: '400px',
-  //     disableClose: true,
-  //     data: dialogOptions,
-  //   };
-
-  //   let modal: MatDialogRef<any>;
-
-  //   switch (dialogOptions.action) {
-  //     case 'createEvent':
-  //       modal = this.dialog.open(NewEventModalComponent, options);
-  //       break;
-  //     case 'deleteEvent':
-  //       modal = this.dialog.open(DeleteModalComponent, options);
-  //       modal.afterClosed().subscribe((result) => {
-  //         this.getEvents();
-  //         console.log(result);
-  //       });
-  //       break;
-  //     case 'linkEvent':
-  //       console.info('');
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }
-
-  // openDeleteEventDialog(
-  //   enterAnimationDuration: string,
-  //   exitAnimationDuration: string
-  // ) {
-  //   const dialogRef = this.dialog.open(DeleteModalComponent);
-  // }
 }
 
 export interface IDialogData {

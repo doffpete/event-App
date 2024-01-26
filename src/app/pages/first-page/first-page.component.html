@@ -1,6 +1,5 @@
 <div class="home-page">
   <nav class="nav-bar">
-   
     <h1 class="logo-name">DP</h1>
     <h5 class="logo-theme">Organizing your events</h5>
     <input
@@ -12,9 +11,20 @@
       placeholder="Search Events"
     />
     <h2>MY EVENTS</h2>
-    <button class="total-events-btn" type="button" style="background-color: rgb(90, 75, 104); color: white;">{{ events.length }}</button>
+    <button
+      class="total-events-btn"
+      type="button"
+      style="background-color: rgb(90, 75, 104); color: white"
+    >
+      {{ events.length }}
+    </button>
 
-    <button class="create-btn" type="button" style="background-color: rgb(159, 45, 102); color: white; " (click)="openCreateEventModal()">
+    <button
+      class="create-btn"
+      type="button"
+      style="background-color: rgb(95, 41, 67); color: white"
+      (click)="openCreateEventModal()"
+    >
       <i class="bi bi-plus-lg"></i>NEW EVENT
     </button>
 
@@ -27,7 +37,7 @@
     >
       {{ userData.email[0] | titlecase }}
     </button>
-    <mat-menu #aftermenu="matMenu" yPosition="below">
+    <mat-menu #aftermenu="matMenu" yPosition="below" class="logout-menu">
       <button
         mat-menu-item
         type="button"
@@ -42,7 +52,19 @@
   <div class="page-body">
     <div class="header">
       <h1 class="event-header">Your Events</h1>
-      <i class="bi bi-filter-square" style="font-size: 24px;"></i>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <i
+          class="bi bi-filter-square"
+          style="font-size: 24px; cursor: pointer"
+        ></i>
+      </button>
+      <mat-menu #menu="matMenu" class="mat-menu-content">
+        <button (click)="sortEventsByStartDate()" mat-menu-item>
+          start-date
+        </button>
+        <button (click)="sortEventsByEndDate()" mat-menu-item>end-date</button>
+        <button (click)="sortEventsByTime()" mat-menu-item>time</button>
+      </mat-menu>
     </div>
 
     <div class="events-detail" *ngIf="events?.length; else noData">
@@ -50,11 +72,13 @@
         <app-event-card
           [event]="event"
           (reloadAllEvents)="getEvents()"
+          
         ></app-event-card>
       </div>
     </div>
+    
     <ng-template #noData>
-      <h3>Click on the create events button above to create an event</h3>
+      <h3>Click on New event button, to create your events</h3>
     </ng-template>
   </div>
 </div>

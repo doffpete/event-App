@@ -46,27 +46,20 @@ export class EventCardComponent implements OnInit {
 
   @Output() reloadAllEvents = new EventEmitter();
 
-
-  displayNote(){
-
-  }
+  displayNote() {}
 
   getBookedTicketByUsers() {
     this.eventService.getBookedTickets(this.event.id).then((res) => {
       this.bookedTicketsByUsers = res;
-      // console.log(this.bookedTicketsByUsers);
-      // console.log(res);
+      
     });
   }
 
-  // constructEventLink(eventId: any) {
-
-  // }
+  
 
   copyEventLink(eventId: string) {
     const link = `${window.location.origin}/${this.purchaseTicketRoute}/${eventId}`;
     this.uniqueLink = link;
-    
 
     return this.clipboard.copy(this.uniqueLink);
   }
@@ -86,7 +79,6 @@ export class EventCardComponent implements OnInit {
         Math.floor(Math.random() * eventCardColorsArray.length)
       ];
     this.randomColor = randomColor;
-    console.log(randomColor);
   }
 
   openDialog(dialogOptions: IDialogData) {

@@ -53,8 +53,6 @@ export class BookTicketModalComponent {
     public dialogRef: MatDialogRef<BookTicketModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: EventResponseInterface
   ) {
-    console.log(data);
-
     this.bookEventForm = this.FormBuilder.group({
       eventId: this.FormBuilder.control(data.id),
       firstName: this.FormBuilder.control('', [Validators.required]),
@@ -72,7 +70,6 @@ export class BookTicketModalComponent {
       .then(() => {
         this.onBookTicket();
       });
-    console.log(this.bookEventForm.value);
   }
   openSnackBar() {
     this._snackBar.open('You have booked a ticket!!', 'close', {
@@ -88,9 +85,7 @@ export class BookTicketModalComponent {
         this.reload.emit();
         this.openSnackBar();
       })
-      .catch(() => {
-        alert('An error occured!');
-      });
+      .catch(() => {});
     this.dialogRef.close();
   }
 }

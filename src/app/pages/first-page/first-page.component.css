@@ -6,7 +6,11 @@
 .nav-bar {
   height: 70px;
   background-color: hsla(300, 18%, 11%, 0.943);
-  padding: 4px 32px;
+  padding: 8px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }
 
 .logo-name {
@@ -49,6 +53,18 @@ h2 {
   color: rgb(225, 199, 199);
   padding-top: 15px;
 }
+
+/* ::ng-deep .log-out-menu {
+  width: 10px;
+} */
+
+/* ::ng-deep .mat-menu-content {
+  width: 10px;
+} */
+
+/* ::ng-deep .mat-menu-content button {
+  height: 10px;
+} */
 
 .total-events-btn {
   align-items: center;
@@ -94,6 +110,20 @@ input {
   overflow-x: scroll;
 }
 
+::-webkit-scrollbar {
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid none;
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: whitesmoke;
+  border-radius: 5px;
+}
+
 .event-card {
   background-color: whitesmoke;
   height: 350px;
@@ -101,4 +131,8 @@ input {
   margin: 42px 24px 16px 0px;
   border-radius: 8px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+mat-slider {
+  width: 300px;
 }

@@ -16,6 +16,9 @@
 input {
   padding: 5px;
 }
+p {
+  font-size: 12px;
+}
 
 button {
   background-color: hsla(300, 18%, 11%, 0.943);

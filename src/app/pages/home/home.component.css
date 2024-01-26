@@ -2,18 +2,29 @@
   background-color: hsla(300, 7%, 8%, 0.329);
   min-height: 100vh;
 }
-.logo-div {
-  margin-left: 50px;
+
+.nav-bar {
+  height: 70px;
+  background-color: hsla(300, 18%, 11%, 0.943);
+  padding: 4px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* .nav-bar {
-  padding: 20px;
-  height: 20px;
-  background-color: hsla(300, 18%, 11%, 0.943);
+.nav-logo {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-} */
+}
+
+.logo-name {
+  font-size: 28px;
+  color: darkgrey;
+}
+
+.logo-theme {
+  margin-right: 68%;
+  color: darkgrey;
+}
 
 button {
   margin: 10px;
