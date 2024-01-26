@@ -15,6 +15,7 @@
       class="total-events-btn"
       type="button"
       style="background-color: rgb(90, 75, 104); color: white"
+      *ngIf="events"
     >
       {{ events.length }}
     </button>
@@ -68,7 +69,7 @@
     </div>
 
     <div class="events-detail" *ngIf="events?.length; else noData">
-      <div class="event-card" *ngFor="let event of events">
+      <div class="event-card" *ngFor="let event of filteredEvents">
         <app-event-card
           [event]="event"
           (reloadAllEvents)="getEvents()"

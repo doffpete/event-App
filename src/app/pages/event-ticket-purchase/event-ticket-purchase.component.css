@@ -7,32 +7,39 @@
 }
 
 .event-info {
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: cadetblue;
-  height: 100%;
+  background-color: whitesmoke;
+  height: 550px;
   width: 350px;
-  margin: 5px;
 }
 
 .info-header {
-  margin-top: 5px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 350px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  text-align: center;
+  width: 100%;
+}
+
+.venue-time {
+  display: flex;
+  justify-content: space-between;
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 24px;
   font-style: italic;
   color: brown;
 }
 
 h2 {
-  font-size: 15px;
+  font-size: 12px;
 }
 
 h3 {
@@ -40,12 +47,11 @@ h3 {
 }
 
 .info-body {
-  display: flex;
-  flex-direction: column;
-}
+  display: flexbox;
+  justify-content: center;
 
-/* .info-footer {
-} */
+  padding: 2px 32px;
+}
 
 button {
   background-color: burlywood;
@@ -56,17 +62,18 @@ button {
   border: none;
   border-radius: 5px;
   margin-bottom: 20px;
+  padding: 8px 8px;
 }
 button:hover {
   background-color: rgb(138, 84, 18);
   color: white;
 }
 
-.center {
+/* .center {
   left: 50%;
   position: absolute;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
-}
+} */

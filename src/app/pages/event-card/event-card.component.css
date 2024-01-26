@@ -1,7 +1,6 @@
-
-
 .event-card-header {
-  z-index: 2;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
   position: relative;
   display: flex;
   justify-content: center;

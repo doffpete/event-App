@@ -1,14 +1,24 @@
 <div class="event-ticket-purchase-container">
   <div class="event-info" *ngIf="event; else noEvent">
-    <div class="info-header">
+    <div class="info-header" [ngStyle]="{ 'background-color': randomColor }">
       <h1>{{ event.event_name }}</h1>
-      <h2>
-        venue:
-        <h3>{{ event.venue }}</h3>
-      </h2>
+     
     </div>
 
     <div class="info-body">
+      
+        <h2>
+          venue:
+          <h3>{{ event.venue }}</h3>
+        </h2>
+        
+        <h2>
+          Time:
+          <h3>{{ event.event_time }}</h3>
+        </h2>
+
+     
+      
       <h2>
         Date:
         <h3>
@@ -16,20 +26,18 @@
           {{ event.end_date | date : "dd/MMM/yy" }}
         </h3>
       </h2>
-      <h2>
-        Time:
-        <h3>{{ event.event_time }}</h3>
-      </h2>
+     
 
       <h2>
         Tickets Remaining :
         <h3>{{ event.no_tickets - event.no_of_tickets_sold }}</h3>
       </h2>
+      <div class="info-footer">
+        <button (click)="openBookTicketSubModal()">Book Ticket</button>
+      </div>
     </div>
 
-    <div class="info-footer">
-      <button (click)="openBookTicketSubModal()">Book Ticket</button>
-    </div>
+    
   </div>
   <ng-template #noEvent>
     <mat-spinner class="center" [diameter]="500"></mat-spinner>
@@ -39,3 +47,36 @@
 <!-- <div class="center" #noEvent>
   
 </div> -->
+
+<!-- <div class="event-info" *ngIf="event; else noEvent">
+  <div class="event-card-header" [ngStyle]="{ 'background-color': randomColor }">
+    <h2>
+      {{ event.event_name | titlecase }}
+    </h2>
+  </div>
+  <div class="event-card-body">
+    <h2>
+      Date:
+      <h3>
+        {{ event.start_date | date : "dd/MMM/yy" }} -
+        {{ event.end_date | date : "dd/MMM/yy" }}
+      </h3>
+    </h2>
+    <h2>
+      Time:
+      <h3>{{ event.event_time }}</h3>
+    </h2>
+
+    <h2>
+      Tickets Remaining :
+      <h3>{{ event.no_tickets - event.no_of_tickets_sold }}</h3>
+    </h2>
+  </div>
+
+  <div class="info-footer">
+    <button (click)="openBookTicketSubModal()">Book Ticket</button>
+  </div>
+  </div> -->
+
+
+

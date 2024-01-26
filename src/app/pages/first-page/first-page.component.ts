@@ -54,7 +54,7 @@ export class FirstPageComponent implements OnInit {
   async getEvents() {
     await this.eventService.getUserEvents().then((res) => {
       this.events = res;
-      this.filteredEvents = res;
+      this.filteredEvents = this.events;
     });
   }
 
@@ -118,11 +118,16 @@ export class FirstPageComponent implements OnInit {
   }
 
   searchEvents(searchText: string) {
-    const trimmedQuery = searchText.trim().toLowerCase();
-    const filteredEvents = this.events.filter((event) =>
-      event.event_name.toLowerCase().includes(trimmedQuery)
-    );
-    this.filteredEvents = filteredEvents;
+    if (searchText) {
+      const trimmedQuery = searchText.trim().toLowerCase();
+      const filteredEvents = this.events.filter((event) =>
+        event.event_name.toLowerCase().includes(trimmedQuery)
+      );
+      this.filteredEvents = filteredEvents;
+      console.log(filteredEvents);
+    } else {
+      this.filteredEvents = this.events;
+    }
   }
 
   openCreateEventModal() {

@@ -29,6 +29,7 @@ export class EventTicketPurchaseComponent implements OnInit {
   event!: EventResponseInterface;
   id!: number;
   buttonDisabled: boolean | undefined;
+  randomColor!: string;
 
   constructor(
     public dialog: MatDialog,
@@ -45,6 +46,23 @@ export class EventTicketPurchaseComponent implements OnInit {
 
   ngOnInit() {
     this.getEventById();
+    this.getRandomColorForCard();
+  }
+  getRandomColorForCard() {
+    const eventCardColorsArray = [
+      '#00FFFF',
+      '#FF00FF',
+      '#FF0080',
+      '#FF8000',
+      '#B2D732',
+      '#347C98',
+      '#8000FF',
+    ];
+    const randomColor =
+      eventCardColorsArray[
+        Math.floor(Math.random() * eventCardColorsArray.length)
+      ];
+    this.randomColor = randomColor;
   }
 
   openBookTicketSubModal() {

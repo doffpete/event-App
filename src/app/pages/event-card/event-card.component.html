@@ -1,11 +1,10 @@
 <div class="event-card-header" [ngStyle]="{ 'background-color': randomColor }">
   <h2>
     {{ event.event_name | titlecase }}
-
     <i
       mat-button
       [matMenuTriggerFor]="menu"
-      class="bi bi-box-arrow-in-down"
+      class="bi bi-three-dots-vertical"
       style="cursor: pointer"
     ></i>
 

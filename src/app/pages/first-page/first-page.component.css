@@ -54,23 +54,13 @@ h2 {
   padding-top: 15px;
 }
 
-/* ::ng-deep .log-out-menu {
-  width: 10px;
-} */
 
-/* ::ng-deep .mat-menu-content {
-  width: 10px;
-} */
-
-/* ::ng-deep .mat-menu-content button {
-  height: 10px;
-} */
 
 .total-events-btn {
   align-items: center;
   width: 30px;
   height: 20px;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-right: 35px;
   color: darkgrey;
   background-color: rgba(225, 46, 79, 0.505);
