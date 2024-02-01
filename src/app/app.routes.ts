@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { authguardGuard } from './guard/authguard.guard';
 

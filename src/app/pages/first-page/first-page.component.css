@@ -54,8 +54,6 @@ h2 {
   padding-top: 15px;
 }
 
-
-
 .total-events-btn {
   align-items: center;
   width: 30px;
@@ -117,7 +115,7 @@ input {
 .event-card {
   background-color: whitesmoke;
   height: 350px;
-  min-width: 280px;
+  max-width: 280px;
   margin: 42px 24px 16px 0px;
   border-radius: 8px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
